@@ -162,8 +162,8 @@ html {
 }
 
 .splide .splide__pagination .splide__pagination__page {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   margin: 10px;
   background-color: #000000;
   opacity: 1;
@@ -184,8 +184,27 @@ html {
   background-color: #ffd700;
 }
 
+.toggle-back {
+  display: none;
+}
+
+.toggle-back button {
+  border-radius: 999px;
+  appearance: none;
+  border: none;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.toggle-back button img{
+  width: 24px;
+  height: 24px;
+}
+
 @media (max-width: 782px) {
-  .navbar .container{
+  .navbar .container {
     padding-inline: 10px;
   }
   .nav {
@@ -193,15 +212,16 @@ html {
     height: 100vh;
     top: 0;
     left: 0;
-    width: 350px;
+    width: 50%;
     margin-left: -350px;
     flex-direction: column;
     background-color: #000;
     transition: all 0.2s linear;
+    justify-content: center;
   }
   .nav li a {
     padding-left: 20px;
-    width: 80%;
+    width: 100%;
     display: block;
     box-sizing: border-box;
     font-size: 0.7rem;
@@ -213,13 +233,18 @@ html {
     display: block;
   }
 
+  .toggle-back {
+    display: flex;
+    justify-content: center;
+  }
+
   .splide .splide__pagination {
     bottom: 0.2rem;
   }
 
   .splide .splide__pagination .splide__pagination__page {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     margin: 5px;
   }
 
