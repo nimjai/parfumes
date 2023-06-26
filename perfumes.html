@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Perfumes</title>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="toggle" onclick="toggleNavbar()">
+          <img src="assets/menu.png" />
+        </div>
+
+        <ul class="nav" id="nav">
+          <li class="toggle-back">
+            <button onclick="toggleNavbar()">
+              <img src="/assets/IC_ArrowLeft.png" />
+            </button>
+          </li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="#">Perfumes</a></li>
+          <li><a href="/gifts.html">Gifts</a></li>
+          <li><a href="/accessories.html">Accessories</a></li>
+          <li><a href="/hairstyle.html">Hairstyle</a></li>
+        </ul>
+        <form class="search">
+          <input type="text" placeholder="search for an item" />
+          <button type="submit" class="btn">
+            <img src="assets/IC_search.svg" />
+          </button>
+        </form>
+      </div>
+    </nav>
+
+    <div class="main-container">
+      <div class="container">
+        <h1>Perfumes</h1>
+      </div>
+      <div class="container grid" id="grid-container"></div>
+      <div class="footer" id="footer">
+        <div class="container contact">
+          <a href="tel:95227327">+216&nbsp;24051453</a>
+          <a href="tel:95227327">+216&nbsp;24051453</a>
+          <address>Medinine, Zarzis Center, Clothing Row</address>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let toggled = true;
+      let nav = document.getElementById('nav');
+
+      function toggleNavbar() {
+        if (toggled) {
+          toggled = false;
+          nav.classList.add('nav-visible');
+        } else {
+          toggled = true;
+          nav.classList.remove('nav-visible');
+        }
+      }
+
+      fetch('/data/perfumes.json')
+        .then((resp) => resp.json())
+        .then((data) => {
+          const gridContainer = document.getElementById('grid-container');
+
+          data.products.forEach((product) => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+
+            const image = document.createElement('img');
+            image.src = product.image;
+            image.alt = product.name;
+            productCard.appendChild(image);
+
+            const name = document.createElement('h3');
+            name.textContent = product.name;
+            productCard.appendChild(name);
+
+            const brand = document.createElement('p');
+            brand.textContent = `Brand: ${product.brand}`;
+            productCard.appendChild(brand);
+
+            const price = document.createElement('p');
+            price.textContent = `Price: $${product.price}`;
+            productCard.appendChild(price);
+
+            gridContainer.appendChild(productCard);
+          });
+        });
+    </script>
+  </body>
+</html>
